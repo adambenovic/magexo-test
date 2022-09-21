@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Adambenovic\POS\Block\Adminhtml\PointOfSale\Edit" name="adambenovic_pos_point_of_sale_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Adambenovic\POS\Block\Adminhtml\PointOfSale\Edit\Tabs" name="adambenovic_pos_point_of_sale_tabs">
+                <block class="Adambenovic\POS\Block\Adminhtml\PointOfSale\Edit\Tab\PointOfSale" name="adambenovic_pos_point_of_sale_edit_tab_pos"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">pointofsale</argument>
+                    <argument name="block" xsi:type="string">adambenovic_pos_point_of_sale_edit_tab_pos</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

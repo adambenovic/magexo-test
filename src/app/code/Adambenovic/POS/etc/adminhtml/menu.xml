@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Adambenovic_POS::pos" title="Point Of Sale" module="Adambenovic_POS" sortOrder="10"
+             resource="Adambenovic_POS::pos" action="adambenovic_pos/pos/index"/>
+    </menu>
+</config>
