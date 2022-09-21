@@ -13,6 +13,14 @@ Goal: is to create administration grid with ability to add new Point Of Sale the
 3. [x] Create console command to add new POS
     1. [x] Add new console command magexo:pos:add with parameters: name, address and is_availaible
 
+## How to start
+
+1. Clone this repo
+2. Run ```bin/setup```
+3. Open [magexo.site/admin](https://magexo.site/admin)
+4. Login as john.smith:password123 (setup authenticator for 2FA)
+5. Go to Point Of Sale
+
 ## Built using / Credits
 
 - [markshust/docker-magento](https://github.com/markshust/docker-magento)
