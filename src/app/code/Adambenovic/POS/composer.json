@@ -1,0 +1,20 @@
+{
+  "name": "adambenovic/module-pos",
+  "version": "1.0.0",
+  "description": "Point Of Sale Module for Magento 2",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Adambenovic\\POS\\": ""
+    }
+  }
+}

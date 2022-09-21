@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="adambenovic_pos_point_of_sale" resource="default">
+        <column xsi:type="int" name="pos_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false"/>
+        <column xsi:type="varchar" name="address" length="255" nullable="false"/>
+        <column xsi:type="boolean" name="is_available" nullable="false" default="false"/>
+        <column xsi:type="datetime" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="datetime" name="updated_at" on_update="true" nullable="false"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="pos_id"/>
+        </constraint>
+        <index referenceId="INDEX_NAME_FTS" indexType="fulltext">
+            <column name="name"/>
+        </index>
+    </table>
+</schema>

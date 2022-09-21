@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="adambenovic_pos_point_of_sale_listing_data_source" xsi:type="string">Adambenovic\POS\Model\ResourceModel\PointOfSale\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Adambenovic\POS\Model\ResourceModel\PointOfSale\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">adambenovic_pos_point_of_sale</argument>
+            <argument name="resourceModel" xsi:type="string">Adambenovic\POS\Model\ResourceModel\PointOfSale</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="magexoPosAdd" xsi:type="object">Adambenovic\POS\Console\PosAdd</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
