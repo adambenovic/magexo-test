@@ -1,0 +1,73 @@
+#!/bin/bash
+set -o errexit
+
+MEM=$(docker info | grep "Total Memory" | cut -d':' -f2 | xargs | sed s/GiB//)
+# Docker reports RAM 0.2 less than what it is actually set to
+(( $(echo "$MEM < 5.8" | bc -l) )) && echo "There must be at least 6GB of RAM allocated to Docker to continue." && exit
+
+# shellcheck source=../env/db.env
+source env/db.env
+# shellcheck source=../env/elasticsearch.env
+source env/elasticsearch.env
+# shellcheck source=../env/magento.env
+source env/magento.env
+# shellcheck source=../env/rabbitmq.env
+source env/rabbitmq.env
+
+bin/stop
+
+docker compose -f docker-compose.yml up -d
+[ $? != 0 ] && echo "Failed to start Docker services" && exit
+
+echo "Waiting for connection to Elasticsearch..."
+bin/clinotty timeout $ES_HEALTHCHECK_TIMEOUT bash -c "
+    until curl --silent --output /dev/null http://$ES_HOST:$ES_PORT/_cat/health?h=st; do
+        printf '.'
+        sleep 2
+    done"
+[ $? != 0 ] && echo "Failed to connect to Elasticsearch" && exit
+
+echo ""
+echo "Waiting for connection to RabbitMQ..."
+bin/clinotty timeout $RABBITMQ_HEALTHCHECK_TIMEOUT bash -c "
+    until curl --silent --output /dev/null http://$RABBITMQ_DEFAULT_USER:$RABBITMQ_DEFAULT_PASS@$RABBITMQ_HOST:$RABBITMQ_MANAGEMENT_PORT/api/aliveness-test/%2F; do
+        printf '.'
+        sleep 2
+    done"
+[ $? != 0 ] && echo "Failed to connect to RabbitMQ" && exit
+
+echo "Copying files to container before install..."
+bin/copytocontainer --all
+
+echo "Install composer..."
+bin/composer install
+
+echo "Improt DB shceme&data..."
+bin/mysql < backup.sql
+
+echo "Import config..."
+bin/magento app:config:import
+
+echo "Enable module..."
+bin/magento module:enable Adambenovic_POS
+
+echo "Setup domain..."
+bin/setup-domain magexo.test
+
+echo "Disable 2FA for Admin and clean cache..."
+bin/magento module:disable Magento_TwoFactorAuth
+bin/magento cache:flush
+
+echo "Compile DI..."
+bin/magento setup:di:compile
+
+echo "Restart containers..."
+bin/restart
+
+echo "Fixing owner and permissions..."
+bin/fixowns
+bin/fixperms
+
+echo "Open admin & mailcatcher..."
+open http://magexo.test:1080
+open https://magexo.test/admin

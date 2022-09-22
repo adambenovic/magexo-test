@@ -49,8 +49,8 @@ class PointOfSaleActions extends Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.name }"'),
-                                'message' => __('Are you sure you want to delete the Point Of Sale "${ $.$data.name }" ?')
+                                'title' => __('Delete this Point Of Sale?'),
+                                'message' => __('Are you sure you want to delete the selected Point Of Sale?')
                             ]
                         ]
                     ];

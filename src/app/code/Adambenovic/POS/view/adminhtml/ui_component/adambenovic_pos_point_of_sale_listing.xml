@@ -10,7 +10,7 @@
                 adambenovic_pos_point_of_sale_listing.adambenovic_pos_point_of_sale_listing_data_source
             </item>
         </item>
-        <item name="spinner" xsi:type="string">spinner_columns</item>
+        <item name="spinner" xsi:type="string">adambenovic_pos_point_of_sale_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
@@ -52,7 +52,7 @@
         <component name="columns_controls">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="columnsData" xsi:type="array">
+                    <item   name="columnsData" xsi:type="array">
                         <item name="provider" xsi:type="string">
                             adambenovic_pos_point_of_sale_listing.adambenovic_pos_point_of_sale_listing.adambenovic_pos_point_of_sale_columns
                         </item>
@@ -114,7 +114,7 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="spinner_columns">
+    <columns name="adambenovic_pos_point_of_sale_columns">
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
