@@ -17,8 +17,8 @@ Goal: is to create administration grid with ability to add new Point Of Sale the
 
 1. Clone this repo
 2. Run ```bin/setup-existing```
-3. Wait for setup to finish and open sites, or open [magexo.site/admin](https://magexo.site/admin) and [mailcatcher](https://magexo.site:1080)
-4. Login as john.smith:password123 (setup authenticator for 2FA, email will be in mailcatcher)
+3. Wait for setup to finish and open the site, or open [magexo.site/admin](https://magexo.site/admin)
+4. Login as john.smith:password123
 5. Go to Point Of Sale
 6. Check the functionality in Admin
 7. Check the functionality of command by running ```bin/magento magexo:pos:add "Point Of Sale from command" "Address  from command" 0```

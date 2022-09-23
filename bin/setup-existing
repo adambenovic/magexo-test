@@ -68,6 +68,5 @@ echo "Fixing owner and permissions..."
 bin/fixowns
 bin/fixperms
 
-echo "Open admin & mailcatcher..."
-open http://magexo.test:1080
+echo "Open admin..."
 open https://magexo.test/admin
